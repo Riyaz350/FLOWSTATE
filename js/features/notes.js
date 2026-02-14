@@ -1,11 +1,16 @@
+import { h } from "../core/virtualDom.js";
+
 export const Notes = (state) => {
-  return `
-    <div>
-      <h2>Notes</h2>
-      <button id="addNote">Add Note</button>
-      <ul>
-        ${state.notes.map(note => `<li>${note}</li>`).join("")}
-      </ul>
-    </div>
-  `;
+  return h("div", {},
+
+    h("h2", {}, "Notes"),
+
+    h("button", { id: "addNote" }, "Add Note"),
+
+    h("ul", {},
+      ...state.notes.map(note =>
+        h("li", {}, note)
+      )
+    )
+  );
 };
